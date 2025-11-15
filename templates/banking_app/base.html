@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking System</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Banking System</h1>
+        <nav>
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}">Profile</a>
+                {% if user.role == 'borrower' %}
+                    <a href="{% url 'loan_apply' %}">Apply Loan</a>
+                    <a href="{% url 'savings' %}">Savings</a>
+                {% elif user.role == 'staff' %}
+                    <a href="{% url 'loan_approve' 1 %}">Approve Loans</a>  <!-- Example; adjust dynamically -->
+                {% elif user.role == 'admin' %}
+                    <a href="{% url 'reports' %}">Reports</a>
+                    <a href="{% url 'audit' %}">Audit Logs</a>
+                {% endif %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2023 Banking System. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

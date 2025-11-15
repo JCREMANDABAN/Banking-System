@@ -1,0 +1,8 @@
+// {% extends 'banking_app/base.html' %}
+
+{% block content %}
+<h2>Loan Disbursement</h2>
+<p>Loan ID: {{ loan.id }}</p>
+<p>Disbursement Date: {{ loan.disbursement_date }}</p>
+<p>Schedule: {{ loan.amortization_schedule }}</p>
+{% endblock %}

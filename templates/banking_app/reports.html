@@ -1,0 +1,11 @@
+// {% extends 'banking_app/base.html' %}
+
+{% block content %}
+<h2>Financial Reports</h2>
+<ul>
+    {% for loan in loans %}
+        <li>Loan ID: {{ loan.id }}, Amount: {{ loan.application.amount }}</li>
+    {% endfor %}
+</ul>
+<a href="?export_pdf=1">Export PDF</a> | <a href="?export_excel=1">Export Excel</a>
+{% endblock %}

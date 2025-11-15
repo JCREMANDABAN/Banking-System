@@ -1,0 +1,13 @@
+// {% extends 'banking_app/base.html' %}
+
+{% block content %}
+<h2>Loan Approval</h2>
+<p>Application ID: {{ app.id }}</p>
+<p>Amount: {{ app.amount }}</p>
+<p>Status: {{ app.status }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="approve">Approve</button>
+    <button type="submit" name="reject">Reject</button>
+</form>
+{% endblock %}

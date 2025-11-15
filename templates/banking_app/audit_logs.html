@@ -1,0 +1,11 @@
+// {% extends 'banking_app/base.html' %}
+
+{% block content %}
+<h2>Audit Logs</h2>
+<ul>
+    {% for log in logs %}
+        <li>{{ log.user.username }}: {{ log.action }} at {{ log.timestamp }}</li>
+    {% endfor %}
+</ul>
+<a href="?export=1">Export Excel</a>
+{% endblock %}
