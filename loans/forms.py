@@ -1,12 +1,11 @@
 from django import forms
-from .models import LoanApplication, Transaction
+from .models import Loan
 
-class LoanApplicationForm(forms.ModelForm):
+class LoanApplyForm(forms.ModelForm):
     class Meta:
-        model = LoanApplication
-        fields = ['amount', 'term_months']
-
-class TransactionForm(forms.ModelForm):
-    class Meta:
-        model = Transaction
-        fields = ['type', 'amount']
+        model = Loan
+        fields = ('account', 'amount', 'interest_rate', 'term_months')
+        widgets = {
+            'account': forms.Select(attrs={'class': 'form-select'}),
+            'term_months': forms.NumberInput(attrs={'min': 1}),
+        }

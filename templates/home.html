@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="p-5 bg-light rounded-3">
+  <h1 class="display-6">Your money, with less friction.</h1>
+  <p class="lead">Manage accounts, apply for loans, and track transactions in one place.</p>
+  {% if user.is_authenticated %}
+    <a href="{% url 'accounts:account_list' %}" class="btn btn-primary">Go to Dashboard</a>
+  {% else %}
+    <a href="{% url 'accounts:register' %}" class="btn btn-success">Create an account</a>
+    <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary">Login</a>
+  {% endif %}
+</div>
+{% endblock %}
